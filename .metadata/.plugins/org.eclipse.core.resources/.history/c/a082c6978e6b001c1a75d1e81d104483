@@ -1,0 +1,17 @@
+package com.hi;
+
+import java.util.Scanner;
+
+public class Grade_program {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("己利包府橇肺弊伐");
+		System.out.println();
+		sy
+		
+
+	}
+
+}

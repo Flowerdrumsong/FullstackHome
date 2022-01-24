@@ -1,0 +1,28 @@
+package com.hi;
+
+import java.util.Scanner;
+
+public class Grade_program {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String input;
+		
+		System.out.println("성적관리프로그램");
+		
+		
+		while(true){
+			System.out.println("1.입력 2.출력 3.수정 4.삭제 0.종료");
+			input=sc.nextLine();
+			if(input.equals("0")){
+				break;
+			}else if(input.equals("2")){
+				
+			}
+		}
+		System.out.println("Dsalksjhkl");
+		
+
+	}
+
+}

@@ -1,0 +1,8 @@
+package com.hyemi;
+
+public class Reader {
+	public void userInfo(Socket sock){
+		io-nickname
+		UserManger(sock, nickname);
+	}
+}

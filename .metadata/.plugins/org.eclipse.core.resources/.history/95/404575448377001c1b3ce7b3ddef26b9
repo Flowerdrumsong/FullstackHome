@@ -1,0 +1,38 @@
+package com.hyemi;
+
+import java.io.*;
+import java.net.Socket;
+
+public class CheckName {
+	Socket sock;
+	public static boolean checkDuplicates(Socket sock) {
+		System.out.println("CheckName checkDuplicates run");
+		InputStream is;
+		InputStreamReader isr;
+		BufferedReader br;
+		
+			try {
+				System.out.println("checkdulicates try");
+				is = sock.getInputStream();
+				isr=new InputStreamReader(is);
+				br=new BufferedReader(isr);
+				System.out.println("before read");
+				String msg=br.readLine();
+				System.out.println("msg: "+msg);
+				if(CheckUserNameData.checkUserNamedata(msg)){
+					System.out.println("CheckName checkDuplicates end");
+					System.out.println("if");
+					
+					///string값 보내주기 
+					return true;
+				}else{
+					System.out.println("CheckName checkDuplicates end");
+					return false;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+
+	}
+}

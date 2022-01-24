@@ -1,0 +1,9 @@
+package com.hyemi;
+
+import java.net.ServerSocket;
+
+public class AcceptSocket extends Thread {
+	
+	ServerSocket server=new ServerSocket(8880);
+
+}

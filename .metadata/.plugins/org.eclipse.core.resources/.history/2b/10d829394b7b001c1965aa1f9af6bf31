@@ -1,0 +1,9 @@
+package com.hyemi;
+
+public class GameUser {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

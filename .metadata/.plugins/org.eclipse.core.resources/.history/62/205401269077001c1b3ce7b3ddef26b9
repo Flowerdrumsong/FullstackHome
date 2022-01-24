@@ -1,0 +1,113 @@
+package com.hyemi;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+
+import javax.swing.*;
+
+public class SubPagePanel22 extends Panel implements ActionListener{
+	
+	JTextField tf;
+	static BufferedWriter bw; 
+	Panel centerPanel;
+	JButton backBtn, plusBtn, sendBtn;
+	JTextArea ta;
+	Panel changingPanelSub;
+	
+	public SubPagePanel22(){
+		changingPanelSub=new Panel();
+		PanelSet.subPanelList.add(changingPanelSub);
+		changingPanelSub.setLayout(new BorderLayout());
+		Panel northPanel=new Panel();
+		backBtn=new JButton();
+		Panel northPanelInner=new Panel();
+		BorderLayout northPanelLayout=new BorderLayout();
+		northPanel.add(northPanelInner);
+		northPanelInner.setLayout(northPanelLayout);
+		backBtn.setIcon(new ImageIcon("icon-back.png"));
+		backBtn.addActionListener(this);
+		JLabel roomTitle=new JLabel(MainPagePanel.roomNameCreated);
+		roomTitle.setPreferredSize(new Dimension(195, 30));
+		northPanelInner.add(backBtn, BorderLayout.WEST);
+		northPanelInner.add(roomTitle, BorderLayout.CENTER);
+		changingPanelSub.add(northPanel, BorderLayout.NORTH);
+		
+		centerPanel=new Panel();
+		ta=new JTextArea();
+		ta.setColumns(23);
+		ta.setRows(25);
+		ta.setEditable(false);
+		ta.setBackground(new Color(162,228,184));
+		JScrollPane scroll = new JScrollPane(ta);
+	    scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		centerPanel.add(scroll);
+		
+		changingPanelSub.add(centerPanel, BorderLayout.CENTER);
+		
+		Panel southPanel=new Panel();
+		plusBtn=new JButton("+");
+		plusBtn.addActionListener(this);
+		tf=new JTextField();
+		tf.setColumns(15);
+		tf.addActionListener(this);
+		sendBtn=new JButton("����");
+		sendBtn.addActionListener(this);
+		Panel southPanelInner = new Panel();
+		southPanelInner.setLayout(new BorderLayout());
+		southPanelInner.add(plusBtn, BorderLayout.WEST);
+		southPanelInner.add(tf, BorderLayout.CENTER);
+		southPanelInner.add(sendBtn, BorderLayout.EAST);
+		southPanel.add(southPanelInner);
+		changingPanelSub.add(southPanel, BorderLayout.SOUTH);
+		add(changingPanelSub);
+	}
+	
+	public static void sendMsg(String msg){
+		try {
+			System.out.println("sendmsg run");
+			bw.write(msg);
+			bw.newLine();
+			bw.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj=e.getSource();
+		String msg=tf.getText();
+		if(obj==backBtn){
+			ChangePanel.subToMain();
+		}else if(obj==plusBtn){
+			System.out.println("plusBtn clicked");
+			System.out.println("plusBtn");
+		} else {
+			InputStream is=null;
+			OutputStream os=null;
+			InputStreamReader isr=null;
+			OutputStreamWriter osw=null;
+			BufferedReader br=null;
+			
+			try {
+				is=IntroPageFrame.sock.getInputStream();
+				os=IntroPageFrame.sock.getOutputStream();
+				isr=new InputStreamReader(is);
+				osw=new OutputStreamWriter(os);
+				br=new BufferedReader(isr);
+				bw=new BufferedWriter(osw);
+				sendMsg(msg);
+				msg=br.readLine();
+				tf.setText("");
+				ta.append(msg+"\n");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+
+		
+		
+	}
+	
+}

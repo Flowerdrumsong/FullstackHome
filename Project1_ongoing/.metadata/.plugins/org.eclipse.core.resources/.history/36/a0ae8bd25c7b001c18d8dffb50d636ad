@@ -1,0 +1,19 @@
+package com.hyemi;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class AcceptSocket extends Thread {
+	
+	public AcceptSocket(){
+		Socket sock=null;
+		ServerSocket server=null;
+		try {
+			server=new ServerSocket(8888);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+	}
+	
+}

@@ -1,0 +1,10 @@
+package com.hyemi;
+
+public class GameRoom {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

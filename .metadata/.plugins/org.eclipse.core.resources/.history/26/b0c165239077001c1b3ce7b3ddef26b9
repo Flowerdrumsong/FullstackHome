@@ -1,0 +1,79 @@
+package com.hyemi;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class MainPagePanel extends Panel implements ActionListener {
+	
+	JPanel centerPanel;
+	JButton makeRoomBtn;
+	Dialog makeARoom;
+	Button okBtn;
+	TextField roomNameTf;
+	static String roomNameCreated;
+	IntroPageFrame intro;
+	Panel changingPanelMain;
+	
+	public MainPagePanel(){
+		changingPanelMain=PanelSet.changingPanelMain;
+		BorderLayout borderLayout=new BorderLayout();
+		changingPanelMain.setLayout(borderLayout);
+		Panel northPanel=new Panel();
+		JLabel titleLabel=new JLabel("saramara");
+		titleLabel.setAlignmentX(Label.CENTER);
+		northPanel.add(titleLabel);
+		changingPanelMain.add(northPanel, BorderLayout.NORTH);
+		
+		centerPanel=new JPanel();
+		centerPanel.setLayout(new FlowLayout());
+		centerPanel.setPreferredSize(new Dimension(300, 490));
+		JScrollPane scroll = new JScrollPane(centerPanel);
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		changingPanelMain.add(scroll, BorderLayout.CENTER);
+		
+		Panel southPanel=new Panel();
+		makeRoomBtn=new JButton("MAKE A ROOM");
+		makeRoomBtn.addActionListener(this);
+		southPanel.add(makeRoomBtn);
+		changingPanelMain.add(southPanel, BorderLayout.SOUTH);
+		
+		Toolkit tool=Toolkit.getDefaultToolkit();
+		Dimension dim=tool.getScreenSize();
+		
+		/*make a room(dialog)*/
+		makeARoom=new Dialog(intro,"MAKE A ROOM",true);
+		Panel makeARoomPanel=new Panel();
+		makeARoomPanel.setLayout(new BorderLayout());
+		Label roomName=new Label("ROOM TITLE");
+		roomName.setAlignment(Label.CENTER);
+		makeARoomPanel.add(roomName, BorderLayout.NORTH);
+		roomNameTf=new TextField();
+		makeARoomPanel.add(roomNameTf, BorderLayout.CENTER);
+		okBtn=new Button("OK!");
+		okBtn.addActionListener(this);
+		makeARoomPanel.add(okBtn, BorderLayout.SOUTH);
+		makeARoom.add(makeARoomPanel);
+		makeARoom.setBounds(dim.width/2-(250/2),dim.height/2-(200/2),250,200);
+		makeARoom.setVisible(false);
+		add(changingPanelMain);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj=e.getSource();
+		if(obj==makeRoomBtn){
+			makeARoom.setVisible(true);
+		}else if(obj==okBtn){
+			makeARoom.setVisible(false);
+			roomNameCreated=roomNameTf.getText();
+			roomNameTf.setText("");
+			centerPanel.add(new Rooms());
+			changingPanelMain.revalidate();
+			ChangePanel.mainToSub(new SubPagePanel());
+		}
+	}
+
+}

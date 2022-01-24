@@ -1,0 +1,10 @@
+package com.hyemi;
+
+public class RoomManager {
+	public static void makeNewRoom(Socket sock){
+		new Room(sock);
+	}
+	public static void removeRoom(){
+		
+	}
+}

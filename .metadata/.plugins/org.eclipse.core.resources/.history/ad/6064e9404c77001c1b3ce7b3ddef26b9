@@ -1,0 +1,22 @@
+package com.hyemi;
+
+import java.io.*;
+import java.net.Socket;
+
+public class CheckDuplicate {
+	
+	public static void writeUserName(Socket sock){
+		OutputStream is;
+		OutputStreamWriter osw;
+		BufferedWriter bw;
+		try {
+			is=sock.getOutputStream();
+			osw=new OutputStreamWriter(is);
+			bw=new BufferedWriter(osw);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+}

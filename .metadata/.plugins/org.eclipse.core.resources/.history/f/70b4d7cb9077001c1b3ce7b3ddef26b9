@@ -1,0 +1,40 @@
+package com.hyemi;
+
+import java.io.*;
+import java.net.Socket;
+
+public class Reader extends Thread {
+	
+	Socket sock;
+	public Reader(Socket sock){
+		this.sock=sock;
+	}
+	public void run(){
+		System.out.println("reader run");
+		InputStream is;
+		InputStreamReader isr;
+		BufferedReader br;
+		String msg;
+		try {
+			System.out.println("reader run try");
+			is=sock.getInputStream();
+			System.out.println("sock: "+sock);
+			isr=new InputStreamReader(is);
+			br=new BufferedReader(isr);
+			System.out.println("br :"+br);
+			while(true){
+				System.out.println("while");
+				msg=br.readLine();
+				System.out.println("msg: "+msg);
+				SubPagePanel.ta.append(msg+"\n");
+				SubPagePanel.ta.revalidate();
+			}
+//			SubPagePanel.centerPanel.add(new Chats(msg));
+//			System.out.println(new Chats(msg));
+//			SubPagePanel.centerPanel.revalidate();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+}

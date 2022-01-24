@@ -1,0 +1,8 @@
+package com.hyemi;
+
+public class UserManager {
+	
+	public UserManager(Socket sock, String nickname){
+			new UserEach(sock, nickname);
+	}
+}

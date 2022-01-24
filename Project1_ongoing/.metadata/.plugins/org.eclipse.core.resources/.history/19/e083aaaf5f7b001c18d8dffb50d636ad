@@ -1,0 +1,10 @@
+package com.hyemi;
+
+public class RoomManager {
+	public static void makeNewRoom(){
+		
+	}
+	public static void removeRoom(){
+		
+	}
+}

@@ -1,0 +1,12 @@
+package com.hyemi;
+
+import java.awt.Panel;
+
+public class ChangePanel {
+	public static void mainToSub(Panel nowPanel){
+		IntroPageFrame.pIntro.removeAll();
+		IntroPageFrame.pIntro.add(nowPanel);
+		IntroPageFrame.pIntro.revalidate();
+		
+	}
+}

@@ -1,0 +1,42 @@
+*ProgramName
+
+
+
+
+----
+
+*ServerMain
+: acceptsocket객체 생성
+
+*AcceptSocket
+: 소켓 받기
+Reader.userInfo() 호출
+
+
+*Reader
+userInfo()
+정보를 받아오기
+그 정보를 UserManger한테 넘기기
+
+*UserManager
+: 정보 받기
+UserEach 만들기(받은 정보로)
+
+*UserEach //필드값만 있음
+:소켓, 닉네임 정보 받기 
+
+*RoomManager
+: Room 만들기
+Room 없애기
+
+*Room
+: UserEach 정보받기
+
+*ChattingManager
+채팅 읽기
+채팅 쓰기
+
+
+
+
+

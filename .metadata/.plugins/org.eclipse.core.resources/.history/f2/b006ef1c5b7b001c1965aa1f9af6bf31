@@ -1,0 +1,31 @@
+package com.hyemi;
+
+import java.net.*;
+import java.util.ArrayList;
+import java.io.*;
+
+public class Server extends Thread{
+
+	public static void main(String[] args) {
+		ServerSocket serve=null;
+		
+		try {
+			serve=new ServerSocket(5000);
+			while(true){
+				Server thr=new Server();
+				thr.sock=serve.accept();
+				thr.start();
+				list.add(thr.sock);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally{
+			try {
+				serve.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

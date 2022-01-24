@@ -1,0 +1,12 @@
+package com.hyemi;
+
+import java.util.ArrayList;
+
+public class RoomManager {
+
+	public static void main(String[] args) {
+		ArrayList <GameRoom> roomList=new ArrayList();
+		
+	}
+
+}

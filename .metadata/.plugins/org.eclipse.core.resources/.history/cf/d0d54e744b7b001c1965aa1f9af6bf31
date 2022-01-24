@@ -1,0 +1,23 @@
+package com.hyemi;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.*;
+
+public class GameUser {
+
+	public static void main(String[] args) {
+		Socket sock=null;
+		OutputStream os=null;
+		
+		try {
+			sock=new Socket("127.0.0.1", 8880);
+			
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

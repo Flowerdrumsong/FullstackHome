@@ -1,0 +1,17 @@
+package com.hyemi;
+
+import java.util.ArrayList;
+
+public class CheckUsername {
+	
+	static ArrayList<String> userData=new ArrayList<>();
+	
+	public static boolean duplicate(String username){
+		if(userData.isEmpty()){
+			userData.add(username);
+			return true;
+		}else if(userData.contains(username)){
+			return false;
+		}
+	}
+}

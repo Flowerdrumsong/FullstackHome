@@ -1,0 +1,77 @@
+package com.hyemi;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class CheckUserNameData {
+
+	public static String checkUserNamedata(String msg) {
+		File file = new File("UserNameData.bin");
+		FileReader fr=null;
+		BufferedReader br=null;
+		FileWriter fw=null;
+		BufferedWriter bw=null;
+		String temp=null;
+		System.out.println(msg);
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		try {
+			fr = new FileReader(file);
+			System.out.println("fr"+fr);
+			br=new BufferedReader(fr);
+			System.out.println("br"+br);
+			System.out.println("temp=br.readLine()"+br.readLine());
+			if((temp=br.readLine())==null){
+				System.out.println("첫손님different");
+				fw=new FileWriter(file, true);
+				bw=new BufferedWriter(fw);
+				bw.write(msg);
+				bw.newLine();
+				bw.flush();
+				String returnMsg="Welcome!";
+				return returnMsg;
+			}else {
+				System.out.println("else");
+				while(true){
+					temp=br.readLine();
+					System.out.println("checkUserNamedata while");
+					System.out.println("temp: "+temp+", msg: "+msg);
+					if(msg.equals(temp)){
+						String returnMsg="same name in usernamedata";
+						return returnMsg;
+					}else{
+						System.out.println("different");
+						bw.write(msg);
+						bw.newLine();
+						bw.flush();
+						String returnMsg="Welcome!";
+						return returnMsg;
+					}
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		
+//		String returnMsg="Try to connect again.";
+//		return returnMsg;
+		
+		
+	}
+}

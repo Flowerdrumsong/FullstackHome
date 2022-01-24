@@ -1,0 +1,38 @@
+package com.hyemi;
+
+import java.io.*;
+import java.net.Socket;
+
+public class CheckName {
+	Socket sock;
+	public static void checkDuplicates(Socket sock) {
+		System.out.println("CheckName checkDuplicates run");
+		InputStream is;
+		InputStreamReader isr;
+		BufferedReader br;
+		OutputStream os;
+		OutputStreamWriter osw;
+		BufferedWriter bw;
+		
+			try {
+				System.out.println("checkdulicates try");
+				is = sock.getInputStream();
+				isr=new InputStreamReader(is);
+				br=new BufferedReader(isr);
+				os=sock.getOutputStream();
+				osw=new OutputStreamWriter(os);
+				bw=new BufferedWriter(osw);
+				
+				System.out.println("before read");
+				String msg=br.readLine();
+				System.out.println("msg: "+msg);
+				String returnMsg=CheckUserNameData.checkUserNamedata(msg);
+				System.out.println("returnMsg"+returnMsg);
+				bw.write(returnMsg);
+				System.out.println("CheckName checkDuplicates end");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+	}
+}
